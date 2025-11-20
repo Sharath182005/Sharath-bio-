@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharath Shankar M - Portfolio & Resume</title>
+
+    <!--
+        This section contains all the CSS styles, making the file self-contained
+        and easy for basic learners to understand.
+    -->
+    <style>
+        /* Import the Inter font for a modern look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* Base Body and Layout Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Light background */
+            min-height: 100vh;
+            padding: 16px; /* p-4 */
+        }
+
+        #app {
+            max-width: 900px; /* max-w-4xl */
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px; /* rounded-xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+            overflow: hidden;
+        }
+
+        /* Header and Navigation Styles */
+        header {
+            padding: 24px; /* p-6 */
+            background-color: #1f2937; /* gray-900 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 30px; /* text-3xl */
+            font-weight: 800; /* font-extrabold */
+            letter-spacing: -0.025em; /* tracking-tight */
+        }
+
+        header p {
+            margin-top: 4px; /* mt-1 */
+            color: #d1d5db; /* gray-300 */
+            font-size: 18px; /* text-lg */
+        }
+
+        nav {
+            margin-top: 16px; /* mt-4 */
+            display: flex;
+            gap: 16px; /* space-x-4 */
+        }
+
+        .nav-button {
+            padding: 8px 16px; /* py-2 px-4 */
+            border-radius: 8px; /* rounded-lg */
+            font-weight: 600; /* font-semibold */
+            font-size: 14px; /* text-sm */
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            color: #d1d5db; /* gray-300 */
+            background-color: transparent;
+        }
+
+        .nav-button:hover {
+            background-color: #2563eb; /* blue-600 */
+            color: white;
+        }
+
+        /* Active Navigation Button Style */
+        .nav-button-active {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 32px; /* p-8 (for desktop size) */
+        }
+
+        /* Page Content Switching */
+        .page-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+        /* --- HOME PAGE STYLES --- */
+        #home-page h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #111827; /* gray-900 */
+            text-align: center;
+        }
+
+        #home-page p.text-lg {
+            font-size: 18px;
+            line-height: 1.625;
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            color: #374151; /* gray-700 */
+        }
+
+        /* Home Page Card Layout (Responsive Grid) */
+        .card-grid {
+            display: grid;
+            gap: 24px; /* gap-6 */
+        }
+        @media (min-width: 768px) { /* md:grid-cols-2 */
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .home-card {
+            padding: 24px; /* p-6 */
+            border-radius: 12px; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .home-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+        }
+
+        .home-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .home-card p.text-sm {
+            font-size: 14px;
+            color: #4b5563; /* gray-600 */
+        }
+
+        .home-card button {
+            margin-top: 16px;
+            padding: 8px 24px;
+            border-radius: 9999px; /* rounded-full */
+            font-weight: 600;
+            transition: background-color 0.15s;
+        }
+
+        /* Resume Card Specific Styles */
+        .home-card.resume-card {
+            background-color: #eff6ff; /* blue-50 */
+            border-bottom: 4px solid #3b82f6; /* blue-500 */
+        }
+        .home-card.resume-card svg {
+            color: #2563eb; /* blue-600 */
+        }
+        .home-card.resume-card h3 {
+            color: #1d4ed8; /* blue-700 */
+        }
+        .home-card.resume-card button {
+            background-color: #2563eb; /* blue-600 */
+            color: white;
+        }
+        .home-card.resume-card button:hover {
+            background-color: #1d4ed8; /* blue-700 */
+        }
+
+        /* Bio-Data Card Specific Styles */
+        .home-card.biodata-card {
+            background-color: #f0fdf4; /* green-50 */
+            border-bottom: 4px solid #10b981; /* green-500 */
+        }
+        .home-card.biodata-card svg {
+            color: #059669; /* green-600 */
+        }
+        .home-card.biodata-card h3 {
+            color: #047857; /* green-700 */
+        }
+        .home-card.biodata-card button {
+            background-color: #059669; /* green-600 */
+            color: white;
+        }
+        .home-card.biodata-card button:hover {
+            background-color: #047857; /* green-700 */
+        }
+
+        /* --- RESUME PAGE STYLES --- */
+        #resume-page h2 {
+            font-size: 24px;
+            font-weight: 700;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            color: #1f2937;
+        }
+
+        #resume-page h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1f2937;
+            padding-left: 12px;
+            border-left: 4px solid #2563eb; /* blue-600 */
+        }
+
+        #resume-page .info-box {
+            margin-bottom: 32px;
+            padding: 16px;
+            background-color: #eff6ff; /* blue-50 */
+            border-radius: 8px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px 16px;
+            color: #374151;
+        }
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr 2fr;
+            }
+            .info-grid .label {
+                grid-column: 1 / 2;
+            }
+            .info-grid .value {
+                grid-column: 2 / 3;
+            }
+        }
+
+        .info-grid p {
+            padding: 4px 0;
+        }
+        .info-grid .label {
+            font-weight: 600;
+        }
+        .info-grid .value a {
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        /* Education & Projects List */
+        .list-spacing > li, .list-spacing > div {
+            padding: 16px;
+            background-color: #f9fafb; /* gray-50 */
+            border-radius: 8px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+            transition: box-shadow 0.2s;
+        }
+        .list-spacing > div:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+
+        .list-spacing h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .list-spacing p {
+            margin-top: 4px;
+            color: #374151;
+        }
+        .list-spacing p.text-sm {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .list-spacing .project-description {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 8px;
+            color: #4b5563;
+        }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px; /* rounded-full */
+            transition: box-shadow 0.15s;
+            cursor: default;
+        }
+        .skill-tag:hover {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Default tag colors (blue) */
+        .skill-tag {
+            background-color: #eff6ff; /* blue-100 */
+            color: #1d4ed8; /* blue-800 */
+        }
+        /* Specific overrides for visual separation */
+        .skill-tag.green {
+            background-color: #d1fae5; /* green-100 */
+            color: #065f46; /* green-800 */
+        }
+        .skill-tag.purple {
+            background-color: #f3e8ff; /* purple-100 */
+            color: #6b21a8; /* purple-800 */
+        }
+        .skill-tag.red {
+            background-color: #fee2e2; /* red-100 */
+            color: #991b1b; /* red-800 */
+        }
+
+
+        /* --- BIO-DATA PAGE STYLES --- */
+        #biodata-page h2 {
+            font-size: 24px;
+            font-weight: 700;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            color: #1f2937;
+        }
+
+        .biodata-box {
+            padding: 24px;
+            background-color: #fffbeb; /* yellow-50 */
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-left: 8px solid #facc15; /* yellow-400 */
+        }
+
+        .biodata-section {
+            border-bottom: 1px solid #fde68a; /* yellow-200 */
+            padding-bottom: 16px;
+            margin-bottom: 32px;
+        }
+        .biodata-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .biodata-section h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #92400e; /* yellow-800 */
+        }
+
+        /* Table Styles */
+        .biodata-table {
+            width: 100%;
+            font-size: 16px;
+            color: #374151;
+            border-collapse: collapse; /* Ensure clean borders */
+        }
+        .biodata-table td {
+            padding: 8px 0;
+        }
+        .biodata-table tr {
+            border-bottom: 1px solid #fef9c3; /* yellow-100 */
+        }
+        .biodata-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .biodata-table .label {
+            font-weight: 500;
+            width: 33.333%;
+        }
+        .biodata-table .value-bold {
+            font-weight: 700;
+        }
+        .biodata-table .value-mono {
+            font-family: monospace;
+        }
+        .biodata-table .align-top {
+            vertical-align: top;
+        }
+
+        /* Academic Details Spacing */
+        .academic-details > div {
+            margin-bottom: 16px;
+        }
+        .academic-details p.font-semibold {
+            font-weight: 600;
+            font-size: 18px;
+            color: #1f2937;
+        }
+        .academic-details p.text-sm {
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        /* Hobbies List */
+        .hobbies-list {
+            list-style-type: disc;
+            margin-left: 16px;
+            list-style-position: inside;
+            font-size: 16px;
+            color: #374151;
+        }
+
+        .thank-you {
+            text-align: center;
+            padding-top: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        /* Footer */
+        footer {
+            padding: 16px;
+            background-color: #f3f4f6; /* gray-100 */
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (min-width: 640px) { /* sm: */
+            body {
+                padding: 32px; /* sm:p-8 */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="app">
+
+        <!-- Header & Navigation -->
+        <header>
+            <h1>Sharath Shankar M</h1>
+            <p>Welcome</p>
+
+            <!-- Navigation Tabs -->
+            <nav>
+                <button id="nav-home" onclick="setHash('home')" class="nav-button">
+                    HOME
+                </button>
+                <button id="nav-resume" onclick="setHash('resume')" class="nav-button">
+                    RESUME
+                </button>
+                <button id="nav-biodata" onclick="setHash('biodata')" class="nav-button">
+                    BIO-DATA
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+
+            <!-- HOME Page Content (New Welcome Page with Links) -->
+            <section id="home-page" class="page-content hidden">
+                <h2>Welcome to My Portfolio</h2>
+                <p class="text-lg">
+                    Hello! I am Sharath Shankar M, a dedicated Computer Science and Engineering student. Explore my academic journey, skills, projects, and personal details below.
+                </p>
+
+                <!-- Navigation Cards -->
+                <div class="card-grid">
+
+                    <!-- Resume Card -->
+                    <div class="home-card resume-card" onclick="setHash('resume')">
+                        <!-- Icon Placeholder (SVG) -->
+                        <svg class="w-10 h-10 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <h3>My Professional Resume</h3>
+                        <p class="text-sm">View my technical skills (Java, C, HTML/CSS), academic projects, and education history.</p>
+                        <button>
+                            View Resume
+                        </button>
+                    </div>
+
+                    <!-- Bio-Data Card -->
+                    <div class="home-card biodata-card" onclick="setHash('biodata')">
+                        <!-- Icon Placeholder (SVG) -->
+                        <svg class="w-10 h-10 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-3"></path>
+                        </svg>
+                        <h3>Personal & Academic Bio-Data</h3>
+                        <p class="text-sm">Find core information, academic results (10th, PU), contact details, and hobbies.</p>
+                        <button>
+                            View Bio-Data
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESUME Page Content -->
+            <section id="resume-page" class="page-content hidden">
+                <h2>Professional Resume</h2>
+
+                <!-- Personal Information -->
+                <div class="info-box">
+                    <h3>Personal Information</h3>
+                    <div class="info-grid">
+                        <p class="label">Name:</p>
+                        <p class="value">Sharath Shankar M</p>
+
+                        <p class="label">Email:</p>
+                        <p class="value"><a href="mailto:sharath182005@gmail.com">sharath182005@gmail.com</a></p>
+
+                        <p class="label">Phone:</p>
+                        <p class="value">9483433791</p>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="mb-8">
+                    <h3>Education</h3>
+                    <ul class="space-y-4 list-spacing">
+                        <li>
+                            <h4>B.E. in Computer Science and Engineering</h4>
+                            <p>JSS Academy of Technical Education, Bengaluru</p>
+                            <p class="text-sm">Currently in 3rd Year</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technical Skills Section -->
+                <div class="mb-8">
+                    <h3>Skills</h3>
+                    <div class="skills-container">
+                        <span class="skill-tag green">Java</span>
+                        <span class="skill-tag green">C</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag purple">Prompt Engineering</span>
+                        <span class="skill-tag red">Power Bi</span>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="mb-8">
+                    <h3>Projects</h3>
+                    <div class="list-spacing">
+                        <div>
+                            <h4>AI Interview Preparation Tool (In Progress)</h4>
+                            <p class="project-description">
+                                Currently developing an AI-powered preparation tool designed to help users overcome interview stage fear. 
+                                The tool simulates a real interview environment, generating dynamic, field-specific questions in real-time. 
+                                Upon completion, it provides a comprehensive performance summary to aid in skill improvement and build confidence for real-world interviews.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BIO-DATA Page Content (Consolidated into one box with headings) -->
+            <section id="biodata-page" class="page-content hidden">
+                <h2>Personal Bio-Data</h2>
+
+                <!-- Consolidated Content Box (Using Yellow Theme) -->
+                <div class="biodata-box">
+
+                    <!-- 1. Core Information -->
+                    <div class="biodata-section">
+                        <h3>1. Core Information</h3>
+                        <table class="biodata-table">
+                            <tbody>
+                                <tr>
+                                    <td class="label">Full Name</td>
+                                    <td class="value-bold">Sharath Shankar M</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Father's Name</td>
+                                    <td>Shankar M</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Age</td>
+                                    <td>21 years</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Date of Birth (DOB)</td>
+                                    <td>18-02-2005</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Nationality</td>
+                                    <td>Indian</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 2. Academic Details -->
+                    <div class="biodata-section">
+                        <h3>2. Academic Details</h3>
+                        <div class="academic-details">
+                            <!-- Engineering -->
+                            <div>
+                                <p class="font-semibold">B.E. in Computer Science and Engineering</p>
+                                <p>JSS Academy of Technical Education, Bengaluru (JSSATEB)</p>
+                                <p class="text-sm">Currently in 3rd year. USN: 1JS23CS154</p>
+                            </div>
+                            <!-- PU -->
+                            <div>
+                                <p class="font-semibold">Secondary Schooling (PU)</p>
+                                <p>Narayana College</p>
+                                <p class="text-sm">Securing 81%.</p>
+                            </div>
+                            <!-- Schooling -->
+                            <div>
+                                <p class="font-semibold">10th Grade / Schooling</p>
+                                <p>Orchids the International School</p>
+                                <p class="text-sm">Securing 80%.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Contact Details -->
+                    <div class="biodata-section">
+                        <h3>3. Contact Details</h3>
+                        <table class="biodata-table">
+                            <tbody>
+                                <tr>
+                                    <td class="label">Phone Number</td>
+                                    <td class="value-mono">9483433791</td>
+                                </tr>
+                                <tr>
+                                    <td class="label align-top">Address</td>
+                                    <td>219/2 Divya Jyothi Nagadevanahaali, <br>Bengaluru</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Pincode</td>
+                                    <td>560056</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 4. Hobbies -->
+                    <div class="biodata-section">
+                        <h3>4. Hobbies</h3>
+                        <ul class="hobbies-list">
+                            <li>Trekking and exploring mountains.</li>
+                            <li>Hitting the Gym (Fitness).</li>
+                            <li>Adventure trips .</li>
+                            <li>Cooking</li>
+                        </ul>
+                    </div>
+
+                    <div class="thank-you">
+                        Thank You.
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            &copy; By Sharath Shankar M. 
+        </footer>
+    </div>
+
+    <!-- JavaScript for simple tab switching -->
+    <script>
+        // Get references to all pages and buttons
+        const homePage = document.getElementById('home-page');
+        const resumePage = document.getElementById('resume-page');
+        const biodataPage = document.getElementById('biodata-page');
+        const navButtons = document.querySelectorAll('.nav-button');
+
+        /**
+         * Sets the URL hash (e.g., #resume), which triggers the hashchange event to navigate.
+         * @param {string} pageId - The ID of the page to navigate to ('home', 'resume', or 'biodata').
+         */
+        function setHash(pageId) {
+            window.location.hash = '#' + pageId;
+        }
+
+        /**
+         * Function to switch between pages based on the URL hash.
+         */
+        function updatePageFromHash() {
+            // Get the hash from the URL and remove the '#' symbol. Defaults to 'home' if no hash exists.
+            const hash = window.location.hash.replace('#', '');
+            let pageId = 'home'; 
+
+            // Determine which page ID is requested
+            if (hash === 'resume') {
+                pageId = 'resume';
+            } else if (hash === 'biodata') {
+                pageId = 'biodata';
+            } else if (hash === 'home') {
+                pageId = 'home';
+            }
+
+            // 1. Hide all pages
+            [homePage, resumePage, biodataPage].forEach(page => {
+                // Ensure the element exists before trying to hide it
+                if (page) page.classList.add('hidden');
+            });
+
+            // 2. Remove active class from all navigation buttons
+            navButtons.forEach(button => {
+                button.classList.remove('nav-button-active');
+            });
+
+            // 3. Find the element to show and the button to activate
+            let currentPageElement;
+            let currentNavButton;
+
+            switch (pageId) {
+                case 'resume':
+                    currentPageElement = resumePage;
+                    currentNavButton = document.getElementById('nav-resume');
+                    break;
+                case 'biodata':
+                    currentPageElement = biodataPage;
+                    currentNavButton = document.getElementById('nav-biodata');
+                    break;
+                case 'home':
+                default:
+                    currentPageElement = homePage;
+                    currentNavButton = document.getElementById('nav-home');
+                    break;
+            }
+
+            // 4. Show the selected page and mark the button as active
+            if (currentPageElement) currentPageElement.classList.remove('hidden');
+            if (currentNavButton) currentNavButton.classList.add('nav-button-active');
+        }
+
+        // Listen for hash changes (browser back/forward button, or manual hash change)
+        window.addEventListener('hashchange', updatePageFromHash);
+
+        // Initialize the app by checking the hash on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // If the URL has no hash, set it to 'home' to load the home page first
+            if (!window.location.hash || window.location.hash === '#') {
+                window.location.hash = '#home';
+            }
+            // Manually call the update function once on load
+            updatePageFromHash();
+        });
+    </script>
+</body>
+</html>
